@@ -7,11 +7,12 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const hbs = exphbs.create({});//add helper here
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 
 // Session configuration
 const sess = {
@@ -32,7 +33,7 @@ const sess = {
 app.use(session(sess));
 
 // Set up Handlebars.js
-app.engine('handlebars', exphbs());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Static files (CSS, JavaScript, etc.)

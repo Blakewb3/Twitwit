@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
-const sequelize = require('./config/connection');
 
 class User extends Model {
-  // check if a provided password matches the stored hashed password
-  checkPassword(loginPasswod) {
-    return bcrypt.compareSync(loginPasswod, this.password);
+  // Check if the provided password matches the hashed password in the database
+  checkPassword(loginPassword) {
+    return bcrypt.compareSync(loginPassword, this.password);
   }
 }
 
@@ -22,6 +22,14 @@ User.init(
       allowNull: false,
       unique: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,24 +40,22 @@ User.init(
   },
   {
     hooks: {
-      beforeCreate: async (user) => {
-        // Hash the password before creating a new user
-        if (user.changed('password')) {
-          user.password = await bcrypt.hash(user.password, 10);
-        }
+      // Hash the user's password before creating a new user record
+      beforeCreate: async (newUser) => {
+        newUser.password = await bcrypt.hash(newUser.password, 8);
+        return newUser;
       },
-      beforeUpdate: async (user) => {
-        // Hash the password before updating an existing user, if the password field has changed
-        if (user.changed('password')) {
-          user.password = await bcrypt.hash(user.password, 10);
-        }
+      // Hash the user's password before updating a user record
+      beforeUpdate: async (updatedUser) => {
+        updatedUser.password = await bcrypt.hash(updatedUser.password, 8);
+        return updatedUser;
       },
     },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'User',
+    modelName: 'user',
   }
 );
 

@@ -12,7 +12,6 @@ const hbs = exphbs.create({});//add helper here
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors());
 
 // Session configuration
 const sess = {

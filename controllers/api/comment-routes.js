@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Comment = require('../models/Comment');
-const withAuth = require('../utils/auth');
+const Comment = require('../../models/Comment');
+const withAuth = require('../../utils/auth');
 
 // Route to add a new comment to a post (requires authentication)
 router.post('/add/:post_id', withAuth, async (req, res) => {

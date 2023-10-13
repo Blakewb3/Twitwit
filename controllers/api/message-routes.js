@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Message = require('../../models/Message');
+const Message = require('../../models/message');
 const withAuth = require('../../utils/auth');
 
 // Route to send a new private message (requires authentication)

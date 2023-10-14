@@ -11,7 +11,7 @@
 }
 
 .custom-navbar a {
-  font-size: 35px;
+  font-size: 25px;
   color: var(--tangerine);
 }
 
@@ -32,6 +32,15 @@
 .custom-btn:hover {
   background-color: var(--orange);
   color: var(--dark);
+}
+
+.dropdown-menu {
+  font-size:10px;
+  background-color: var(--orange);
+}
+
+.dropdown-menu:hover{
+  background-color: var(--lightblue);
 }
 
 

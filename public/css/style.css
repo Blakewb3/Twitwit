@@ -11,12 +11,12 @@
 }
 
 .custom-navbar a {
-  font-size: 1.5rem;
+  font-size: 35px;
   color: var(--tangerine);
 }
 
 .custom-navbar a:hover {
-  color: var(--dark);
+  color: white;
 }
 
 /* .bg-primary {

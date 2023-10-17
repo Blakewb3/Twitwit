@@ -1,33 +1,28 @@
 [
     {
-      "username": "Testya69",
+      "name": "Testya69",
       "password": "Autopilot1",
-      "email": "idestroyedTwitter@x.com",
-      "full_name": "Elon Dusk"
+      "email": "idestroyedTwitter@x.com"
     },
     {
-      "username": "Codebreaker",
+      "name": "Codebreaker",
       "password": "iloveJavascr1pt",
-      "email": "code4dayz@google.com",
-      "full_name": "Java Script"
+      "email": "code4dayz@google.com"
     },
     {
         "username": "PixelPirate",
         "password": "codingAhoy",
-        "email": "pixel@msn.com",
-        "full_name": "Captain Pixel, the Code Pirate"
+        "email": "pixel@msn.com"
       },
       {
         "username": "RockHopper42",
         "password": "hikeNrock",
-        "email": "rock@yahoo.com",
-        "full_name": "Rocky Hopper, the Mountain Explorer"
+        "email": "rock@yahoo.com"
       },
       {
         "username": "ATwitWit",
         "password": "TwitWitisbetterthanX69",
-        "email": "ATwit@wix.com",
-        "full_name": "Wit Twit"
+        "email": "ATwit@wix.com"
       }
 
   ]

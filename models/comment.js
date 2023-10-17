@@ -13,7 +13,7 @@ Comment.init(
     },
     text: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -23,14 +23,14 @@ Comment.init(
         key: 'id',     // Refers to the 'id' column in the 'user' model
       },
     },
-    post_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'post', // References the 'post' model for the post_id foreign key
-        key: 'id',     // Refers to the 'id' column in the 'post' model
-      },
-    },
+    // post_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'post', // References the 'post' model for the post_id foreign key
+    //     key: 'id',     // Refers to the 'id' column in the 'post' model
+    //   },
+    // },
     likes: {
       type: DataTypes.INTEGER,
       allowNull: false,

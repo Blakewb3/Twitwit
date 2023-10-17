@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('./config/connection');
+const sequelize = require('../config/connection');
 
 class Message extends Model {}
 
@@ -14,6 +14,7 @@ Message.init(
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: 'Default Content',
     },
     senderId: {
       type: DataTypes.INTEGER,
@@ -33,10 +34,10 @@ Message.init(
         key: 'id',
       },
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // status: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     attachments: {
       type: DataTypes.STRING, // Use STRING to store file paths or URLs
       allowNull: true, // Set to true if attachments are optional

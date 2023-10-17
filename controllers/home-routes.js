@@ -1,61 +1,78 @@
 const router = require('express').Router();
-const { log } = require('console');
-const { Twit, User } = require('../models');
+const { twit, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Route for the homepage to display twits
 router.get('/', async (req, res) => {
   try {
-    // Fetch all twits and include user data for each twit
-    const twitData = await Twit.findAll({
+    // Get all twits and JOIN with user data
+    const twitData = await twit.findAll({
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['name'],
         },
       ],
     });
 
-    const twits = twitData.map((twit) => twit.get({ plain: true }));
+    // Serialize data so the template can read it
+    const twit = twitData.map((twit) => twit.get({ plain: true }));
 
-    // Render the homepage template with serialized data and session flag
-    res.render('homepage', {
-      twits,
-      logged_in: req.session.logged_in,
+    // Pass serialized data and session flag into template
+    res.render('homepage', { 
+      twit, 
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Route for displaying a user's profile
+router.get('/twit/:id', async (req, res) => {
+  try {
+    const twitData = await twit.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const twit = twitData.get({ plain: true });
+
+    res.render('twit', {
+      ...twit,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Find and retrieve data for the logged-in user based on the session ID
+    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: PostTwit }],
+      include: [{ model: twit }],
     });
 
     const user = userData.get({ plain: true });
 
-    // Render the user's profile with serialized data and set the logged-in flag
     res.render('profile', {
       ...user,
-      logged_in: true,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Login route
-// localhost:3001/login
 router.get('/login', (req, res) => {
-  console.log("route hit");
-  // Redirect to the profile route if the user is already logged in
+  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect('/profile');
     return;
   }
 

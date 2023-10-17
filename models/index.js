@@ -1,7 +1,7 @@
-const User = require('./User');
+const User = require('./user');
 const Twit = require('./twit');
-const Message = require('./Message');
-const Comment = require('./Comment');
+const Message = require('./message');
+const Comment = require('./comment');
 
 // Create associations
 User.hasMany(Twit, {

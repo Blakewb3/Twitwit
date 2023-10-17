@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Twit = require('../../models/post-twit');   
+const Twit = require('../../models/twit');   
 
 // route to create/add a twit using async/await
 router.post('/', async (req, res) => {

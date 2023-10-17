@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { log } = require('console');
 const { Twit, User } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -49,7 +50,9 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 // Login route
+// localhost:3001/login
 router.get('/login', (req, res) => {
+  console.log("route hit");
   // Redirect to the profile route if the user is already logged in
   if (req.session.logged_in) {
     res.redirect('/dashboard');

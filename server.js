@@ -31,7 +31,9 @@ app.use(session({
   }),
 }));
 
-// Inform Express.js on which template engine to use
+app.use(session(sess));
+
+// Set up Handlebars.js
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views')); // Specify the views directory

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="veiwport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Room</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="dmscript.js"></script>
+    <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="">Chat Room</a> |
+        
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
+
+     </head>
+  <body>
+    <section id="message-container"></section>
+    <form id="send-container" action="">
+      <input type="text" id="message-input" autocomplete="off" />
+      <button type="submit" id="send-button">Send</button>
+    </form>
+  </body>
+</html>

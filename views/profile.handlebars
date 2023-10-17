@@ -1,19 +1,44 @@
-<section class="card">
-  <a href="/profile/{{id}}">
-    <header>{{Profile}}</header>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          My Profile
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Chats</a></li>    
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Log Out</a></li>
-        </ul>
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Twit to the world:</h3>
+
+    <form class="form new-project-form">
+      <div class="form-group">
+        <label for="project-name">twit name:</label>
+        <input class="form-input" type="text" id="project-name" name="project-name" />
       </div>
-    
+      <div class="form-group">
+        <label for="project-funding">needed funding ($):</label>
+        <input class="form-input" type="number" id="project-funding" name="project-funding" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Twit</button>
+      </div>
+    </form>
+  </div>
 
+  {{#if twit.length}}
+  <div class="col-md-6 project-list">
+    <h3>Your Twits:</h3>
 
-  </a>
-</section>
+    {{#each twits as |twit|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/project/{{twit.id}}">{{twit.name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>

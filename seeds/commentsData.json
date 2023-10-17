@@ -1,0 +1,18 @@
+[
+    {
+      "user_id": 1,
+      "twit_id": 1,
+      "comment_text": "This is a comment on Twit 1."
+    },
+    {
+      "user_id": 2,
+      "twit_id": 1,
+      "comment_text": "Another comment on Twit 1."
+    },
+    {
+      "user_id": 3,
+      "twit_id": 2,
+      "comment_text": "Comment on Twit 2."
+    }
+  ]
+  

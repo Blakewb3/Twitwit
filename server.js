@@ -14,10 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Session configuration
-const sess = {
-  secret: process.env.SESSION_SECRET || 'secret',
+app.use(session({
+  secret: process.env.SESSION_SECRET,
   cookie: {
-    maxAge: 300000,
+    maxAge: 30 * 60 * 1000, // Session expires after 30 minutes of inactivity
     httpOnly: true,
     secure: false,
     sameSite: 'strict',
@@ -27,18 +27,23 @@ const sess = {
   store: new SequelizeStore({
     db: sequelize,
   }),
-};
+}));
 
 app.use(session(sess));
 
 // Set up Handlebars.js
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 // Static files (CSS, JavaScript, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(routes);
+
 // Start the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Server is running on port ' + PORT));
+  app.listen(PORT, () => {
+    console.log(`Now listening on http://localhost:${PORT}`);
+  });
 });

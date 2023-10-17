@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Twit extends Model {}
+class twit extends Model {}
 
-Twit.init(
+twit.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,22 +11,36 @@ Twit.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {
-        type: DataTypes.STRING, //how to pull in username automatically from login/sign up info?
-        allowNull: false,
-        defaultValue: 'DefaultUserName',
-      },
-    twit_content: {
+    name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
     },
   },
   {
     sequelize,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'twit',
   }
 );
 
-module.exports = Twit;
+module.exports = twit;
+
+

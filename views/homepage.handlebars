@@ -1,100 +1,16 @@
-Result Skip Results Iframe
-EDIT ON
-<div id="content"></div>
-
-<nav class="navbar navbar-expand-lg custom-navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">TwitWit</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav ms-auto">
-          <a class="nav-item nav-link" href="#">Home</a>
-          <a class="nav-item nav-link" href="#">Profile</a>
-          <a class="nav-item nav-link" href="#">Chats</a>
-          <a class="nav-item nav-link" href="#">Log Out</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-<script id="main-twit-template" type="text/x-handlebars-template">
-  <div class="twit">
-    <div class="user">
-      <img src="https://api.adorable.io/avatars/{{avatar}}" alt="" class="user-avatar">
-      <div class="user-fullname">{{user-fullname}}</div>
-      <div class="user-username">{{user-username}}</div>
-    </div>
-    <div class="twit-text">
-      {{twit-text}} {{twit-number}}/{{twit-total}}
-    </div>
-    <time class="twit-time">
-      {{twit-time}}
-    </time>
-    <div class="twit-stats">
-      <div class="retwits-and-likes">
-        <strong>{{retwits}}</strong>
-        <span>Retwit</span>
-        <strong>{{loves}}</strong>
-        <span>Likes</span>
-      </div>
-      <div class="twit-stat-avatars">
-        <img src="https://api.adorable.io/avatars/80/abott@adorable.png" alt="">
-        <img src="https://api.adorable.io/avatars/80/bob@adorable.png" alt="">
-        <img src="https://api.adorable.io/avatars/80/jimmy@adorable.png" alt="">
-        <img src="https://api.adorable.io/avatars/80/bill@adorable.png" alt="">
-        <img src="https://api.adorable.io/avatars/80/blaine@adorable.png" alt="">
-        <img src="https://api.adorable.io/avatars/80/dee@adorable.png" alt="">
-      </div>
-    </div>
-    <div class="twit-actions">
-      <span>🗯</span>
-      <strong>{{comments}}</strong>
-      
-      <span>♽</span>
-      <strong>{{retwits}}</strong>
-      
-      <span>♥︎</span>
-      <strong>{{loves}}</strong>
-      
-      <span>✉️</span>
-    </div>
+<!-- Loop over each object in the projects array -->
+{{#each twits as |twit| }}
+<div class="row mb-4 project">
+  <div class="col-md-5">
+    <h2>
+      <a href="/project/{{twit.id}}">{{twit.name}}</a>
+    </h2>
+    <p>Created by {{twit.user.name}} on {{format_date twit.date_created}}</p>
   </div>
-</script>
-
-<script id="sub-twit-template" type="text/x-handlebars-template">
-  <div class="twit thread-twit">
-    <div class="user">
-      <img src="https://api.adorable.io/avatars/{{avatar}}" alt="" class="user-avatar">
-      <div class="user-fullname">
-        {{user-fullname}}
-        <span class="user-username">{{user-username}}</span>
-        <time class="time-ago">
-          &middot;
-          1h
-        </time>
-      </div>
-      <div class="replying-to">
-        Replying to <a href="#0" class="user-username">{{user-username}}</a>
-      </div>
-    </div>
-    <div class="twit-text">
-      {{twit-text}} {{twit-number}}/{{twit-total}}
-    </div>
-    
-    <div class="twit-actions">
-      <span>🗯</span>
-      <strong>{{comments}}</strong>
-      
-      <span>♽</span>
-      <strong>{{retwits}}</strong>
-      
-      <span>♥︎</span>
-      <strong>{{loves}}</strong>
-      
-      <span>✉️</span>
-    </div>
+  <div class="col-md-7">
+    <p>
+      {{twit.description}}
+    </p>
   </div>
-</script>
+</div>
+{{/each}}

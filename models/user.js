@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 class User extends Model {
-  // Check if the provided password matches the hashed password in the database
+  // Check if the provided password matches the hashed password in the database.
   checkPassword(loginPassword) {
     return bcrypt.compareSync(loginPassword, this.password);
   }

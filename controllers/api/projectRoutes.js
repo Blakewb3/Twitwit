@@ -1,35 +1,35 @@
 const router = require('express').Router();
-const { twit } = require('../../models');
+const { Project } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newTwit = await twit.create({
+    const newProject = await Project.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newTwit);
+    res.status(200).json(newProject);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(420).json(err);
   }
 });
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const twitData = await twit.destroy({
+    const projectData = await Project.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!twitData) {
-      res.status(404).json({ message: 'No Twit found with this id!' });
+    if (!projectData) {
+      res.status(404).json({ message: 'No project found with this id!' });
       return;
     }
 
-    res.status(200).json(twitData);
+    res.status(200).json(projectData);
   } catch (err) {
     res.status(500).json(err);
   }

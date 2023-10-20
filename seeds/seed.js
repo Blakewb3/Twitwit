@@ -1,10 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, PostTwit, Comment, Message } = require('../models');
+const { User, twit } = require('../models');
 
 const userData = require('./userData.json');
-const postTwitData = require('./postTwitData.json');
-const commentsData = require('./commentsData.json');
-const messagesData = require('./messagesData.json');
+const twitData = require('./twitData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -14,15 +12,11 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const postTwits = await PostTwit.bulkCreate(postTwitData);
 
-  const messages = await Message.bulkCreate(messagesData);
-
-  for (const comment of commentsData) {
-    await Comment.create({
-      ...comment,
+  for (const twit of twitData) {
+    await twit.create({
+      ...twit,
       user_id: users[Math.floor(Math.random() * users.length)].id,
-      postTwit_id: postTwits[Math.floor(Math.random() * postTwits.length)].id,
     });
   }
 
@@ -30,4 +24,3 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
-

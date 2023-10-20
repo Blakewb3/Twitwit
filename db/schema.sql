@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS twitwit_db;
+DROP DATABASE IF EXISTS crowdfund_db;
 
-CREATE DATABASE twitwit_db;
+CREATE DATABASE crowdfund_db;

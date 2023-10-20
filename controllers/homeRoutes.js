@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { twit, User } = require('../models');
+const { Project, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all twits and JOIN with user data
-    const twitData = await twit.findAll({
+    // Get all projects and JOIN with user data
+    const projectData = await Project.findAll({
       include: [
         {
           model: User,
@@ -15,21 +15,21 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const twit = twitData.map((twit) => twit.get({ plain: true }));
+    const projects = projectData.map((project) => project.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      twit, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      projects,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/twit/:id', async (req, res) => {
+router.get('/project/:id', async (req, res) => {
   try {
-    const twitData = await twit.findByPk(req.params.id, {
+    const projectData = await Project.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -38,11 +38,11 @@ router.get('/twit/:id', async (req, res) => {
       ],
     });
 
-    const twit = twitData.get({ plain: true });
+    const project = projectData.get({ plain: true });
 
-    res.render('twit', {
-      ...twit,
-      logged_in: req.session.logged_in
+    res.render('project', {
+      ...project,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,14 +55,18 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: twit }],
+      include: [{ model: Project }],
     });
 
     const user = userData.get({ plain: true });
 
+    const projectData = await Project.findAll({});
+    const projects = projectData.map((project) => project.get({ plain: true }));
+
     res.render('profile', {
       ...user,
-      logged_in: true
+      logged_in: true,
+      projects,
     });
   } catch (err) {
     res.status(500).json(err);

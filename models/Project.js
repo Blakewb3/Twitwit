@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class twit extends Model {}
+class Project extends Model {}
 
-twit.init(
+Project.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,7 +23,6 @@ twit.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -37,10 +36,8 @@ twit.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'twit',
+    modelName: 'project',
   }
 );
 
-module.exports = twit;
-
-
+module.exports = Project;

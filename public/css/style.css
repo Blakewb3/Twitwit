@@ -1,12 +1,12 @@
 :root {
   --blue: #c7e5ff;
   --orange: #fda25d;
-  --lightblue: #b2c5f9;
+  --lightblue: #a7bcf5;
   --tangerine: #ffe5ae;
   --dark: #004798;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif
+  font-family: 'Courier New', Courier, monospace;
   background-color: var(--lightblue);
 }
 nav{
@@ -36,8 +36,9 @@ nav{
 }
 
 button{
-  background-color: var(--lightblue);
+  background-color: var(--dark);
 }
+
 button a:hover{
   color: var(--tangerine);
 }

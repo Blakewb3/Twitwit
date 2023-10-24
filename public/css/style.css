@@ -5,7 +5,12 @@
   --tangerine: #ffe5ae;
   --dark: #004798;
 }
-
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+nav{
+  background-color: var(--orange);
+}
 .custom-navbar {
   background-color: var(--orange);
 }

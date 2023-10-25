@@ -5,6 +5,12 @@
 
 TwitWit is a social media web application built using Node.js, Express, Sequelize (with MySQL), and other technologies. It allows users to create accounts, post "twits," send messages, and interact with others in a social media environment.
 
+https://twitwit-3030f5d6caaa.herokuapp.com/ 
+
+![alt txt](assets/mainpage.png)
+![alt txt](assets/logged%20in%20profile.png)
+
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -68,6 +74,7 @@ None
 
 For additional questions, contact .
 GitHub: [SacredSoulrend](https://github.com/SacredSoulrend)<br>
+Github: [nomin97] (https://github.com/nomin97)<br>
 add your info here...
 
 ## Resources

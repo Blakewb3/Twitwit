@@ -1,11 +1,14 @@
 :root {
   --blue: #c7e5ff;
   --orange: #fda25d;
-  --lightblue: #b2c5f9;
+  --lightblue: #a7bcf5;
   --tangerine: #ffe5ae;
   --dark: #004798;
 }
-
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--lightblue);
+}
 nav{
   background-color: var(--orange);
 }
@@ -22,11 +25,6 @@ nav{
   color: white;
 }
 
-/* .bg-primary {
-  background-color: var(--lightblue);
-  color: var(--orange);
-} */
-
 .custom-btn {
   background-color: var(--dark);
   color: var(--blue);
@@ -37,20 +35,12 @@ nav{
   color: var(--dark);
 }
 
-.dropdown-menu {
-  font-size:10px;
-  background-color: var(--orange);
+button{
+  background-color: var(--dark);
 }
 
-.dropdown-menu:hover{
-  background-color: var(--lightblue);
-}
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;            /* Footer height */
+button a:hover{
+  color: var(--tangerine);
 }
 
 .card-body,
@@ -58,7 +48,7 @@ nav{
   background-color: var(--tangerine);
 }
 
-.project-list{
+.login-card{
   background-color: #c7e5ff;
 }
 
